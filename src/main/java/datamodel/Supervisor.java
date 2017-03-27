@@ -3,6 +3,7 @@ package datamodel;
 /**
  * Created by raiko on 27/03/2017.
  */
+
 public class Supervisor {
 
     private String name;

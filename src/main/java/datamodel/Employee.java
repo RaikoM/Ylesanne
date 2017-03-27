@@ -1,5 +1,6 @@
 package datamodel;
 
+
 /**
  * Created by raiko on 27/03/2017.
  */

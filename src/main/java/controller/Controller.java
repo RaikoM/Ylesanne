@@ -1,6 +1,11 @@
 package controller;
 
+import calculate.Calculate;
+import com.google.gson.Gson;
+import com.google.gson.stream.JsonReader;
 import org.springframework.web.bind.annotation.*;
+
+import java.io.StringReader;
 
 
 /**
@@ -12,7 +17,7 @@ public class Controller {
 
 
     @RequestMapping(value = "/hello", method = RequestMethod.GET)
-    public String helloWorld (@RequestParam(value="hello", defaultValue = "Hello World!") String hello){
+    public @ResponseBody String helloWorld (@RequestParam(value="hello", defaultValue = "Hello World!") String hello){
         return hello;
     }
 
@@ -21,7 +26,18 @@ public class Controller {
        return Calculate.calculateValue(num1, num2, op);
     }
 
-    //@RequestMapping(value = "/calculate", method = RequestMethod.POST)
+    @RequestMapping(value = "/calculate", method = RequestMethod.POST)
+    @ResponseBody
+    public double calculate (@RequestBody String payload){
+        Gson gson = new Gson();
+        JsonReader reader = new JsonReader(new StringReader(payload));
+        reader.setLenient(true);
+        Calculate calculate = gson.fromJson(payload, Calculate.class);
+        return calculate.calculateValue();
+
+        // Used JSON {"num1": 5,"num2": 12.25,"op": "prod"}
+    }
+
 
 
 

@@ -27,13 +27,13 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 dependencies {
+    compile group: 'com.google.code.gson', name: 'gson', version: '2.8.0'
     compile("org.springframework.boot:spring-boot-starter-data-jpa")
     compile("com.h2database:h2")
     compile("org.springframework.boot:spring-boot-starter-web")
     compile("io.springfox:springfox-swagger2:2.0.2")
     compile("io.springfox:springfox-swagger-ui:2.0.2")
     testCompile('org.springframework.boot:spring-boot-starter-test')
-    testCompile('com.jayway.jsonpath:json-path')
 }
 task wrapper(type: Wrapper) {
     gradleVersion = '2.3'
