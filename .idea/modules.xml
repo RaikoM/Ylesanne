@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/com.testreel.ylesanne.iml" filepath="$PROJECT_DIR$/.idea/modules/com.testreel.ylesanne.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/com.testreel.ylesanne_main.iml" filepath="$PROJECT_DIR$/.idea/modules/com.testreel.ylesanne_main.iml" group="com.testreel.ylesanne" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/com.testreel.ylesanne_test.iml" filepath="$PROJECT_DIR$/.idea/modules/com.testreel.ylesanne_test.iml" group="com.testreel.ylesanne" />
     </modules>
   </component>
 </project>
