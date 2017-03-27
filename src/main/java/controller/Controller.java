@@ -17,9 +17,15 @@ public class Controller {
     }
 
     @RequestMapping(value = "/calculate", method = RequestMethod.GET)
-    public double calculatedValue (@RequestParam double num1, double num2, String op) {
+    public double calculateGetValue (@RequestParam double num1, @RequestParam double num2, @RequestParam String op) {
        return Calculate.calculateValue(num1, num2, op);
     }
+
+    //@RequestMapping(value = "/calculate", method = RequestMethod.POST)
+
+
+
+
 
 
 
