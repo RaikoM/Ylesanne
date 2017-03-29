@@ -3,13 +3,13 @@ package controller;
 import calculate.Calculate;
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
-import datamodel.EmployeeToEmployeesForm;
-import datamodel.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.StringReader;
+import java.util.Collection;
 
 
 /**
@@ -18,35 +18,25 @@ import java.io.StringReader;
 
 @RestController
 public class Controller {
+
+
+    @Autowired
     private EmployeeService employeeService;
 
-    public EmployeeToEmployeesForm employeeToEmployeesForm;
-
-    @Autowired
-    public void setEmployeeToEmployeesForm(EmployeeToEmployeesForm employeeToEmployeesForm) {
-        this.employeeToEmployeesForm = employeeToEmployeesForm;
-    }
-
-    @Autowired
-    public void setEmployeeService(EmployeeService employeeService) {
-        this.employeeService = employeeService;
-    }
-
-
-
     @RequestMapping(value = "/hello", method = RequestMethod.GET)
-    public @ResponseBody String helloWorld (@RequestParam(value="hello", defaultValue = "Hello World!") String hello){
+    public String helloWorld() {
+        String hello = "Hello World!";
         return hello;
     }
 
     @RequestMapping(value = "/calculate", method = RequestMethod.GET)
-    public double calculateGetValue (@RequestParam double num1, @RequestParam double num2, @RequestParam String op) {
-       return Calculate.calculateValue(num1, num2, op);
+    public double calculateGetValue(@RequestParam double num1, @RequestParam double num2, @RequestParam String op) {
+        return Calculate.calculateValue(num1, num2, op);
     }
 
-    @RequestMapping(value = "/calculate",  method = RequestMethod.POST)
+    @RequestMapping(value = "/calculate", method = RequestMethod.POST)
     @ResponseBody
-    public double calculate (@RequestBody String payload){
+    public double calculate(@RequestBody String payload) {
         Gson gson = new Gson();
         JsonReader reader = new JsonReader(new StringReader(payload));
         reader.setLenient(true);
@@ -56,19 +46,11 @@ public class Controller {
         // Used JSON {"num1": 5,"num2": 12.25,"op": "prod"}
     }
 
-    @RequestMapping(value = {"/employees", "/list"}, method = RequestMethod.GET)
-    public String listEmployees(Model model){
-        model.addAttribute("list", employeeService.listAll());
-        return "/list";
+    @RequestMapping(value = "/employee", method = RequestMethod.GET)
+    public ResponseEntity<Collection<Employee>> getEmployees() {
+        Collection<Employee> employees = employeeService.findAll();
+        return new ResponseEntity<>(employees, HttpStatus.OK);
     }
-
-
-
-
-
-
-
-
 
 
 }

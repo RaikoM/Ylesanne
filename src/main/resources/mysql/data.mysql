@@ -1,0 +1,4 @@
+INSERT INTO Employee (employee, supervisor, supervisor_id) VALUES ('Raiko', 'Viljar', 1);
+INSERT INTO Employee (employee, supervisor, supervisor_id) VALUES ('Reemet', 'Viljar', 1);
+INSERT INTO Employee (employee, supervisor, supervisor_id) VALUES ('Sander', 'Viljar', 1);
+INSERT INTO Employee (employee, supervisor, supervisor_id) VALUES ('Heili', 'Viljar', 1);
