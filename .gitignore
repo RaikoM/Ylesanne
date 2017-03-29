@@ -1,3 +1,7 @@
 .gradle
 .idea
-/build
+build
+src/main/java/datamodel/
+src/test/
+gradlew
+gradlew.bat
