@@ -1,19 +1,10 @@
 package datamodel;
 
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
 /**
- * Created by raiko on 27/03/2017.
+ * Created by raiko on 28/03/2017.
  */
-@Entity
-public class Employee {
+public class EmployeeForm {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String employee_name;
     private String supervisor_name;
@@ -52,3 +43,4 @@ public class Employee {
     }
 
 }
+

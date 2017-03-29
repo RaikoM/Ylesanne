@@ -8,7 +8,7 @@ public class Calculate {
 
     private double num1;
     private double num2;
-    public String op;
+    private String op;
 
     public double getNum1() {
         return num1;

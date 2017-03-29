@@ -3,6 +3,10 @@ package controller;
 import calculate.Calculate;
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
+import datamodel.EmployeeToEmployeesForm;
+import datamodel.EmployeeService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.StringReader;
@@ -14,6 +18,20 @@ import java.io.StringReader;
 
 @RestController
 public class Controller {
+    private EmployeeService employeeService;
+
+    public EmployeeToEmployeesForm employeeToEmployeesForm;
+
+    @Autowired
+    public void setEmployeeToEmployeesForm(EmployeeToEmployeesForm employeeToEmployeesForm) {
+        this.employeeToEmployeesForm = employeeToEmployeesForm;
+    }
+
+    @Autowired
+    public void setEmployeeService(EmployeeService employeeService) {
+        this.employeeService = employeeService;
+    }
+
 
 
     @RequestMapping(value = "/hello", method = RequestMethod.GET)
@@ -26,7 +44,7 @@ public class Controller {
        return Calculate.calculateValue(num1, num2, op);
     }
 
-    @RequestMapping(value = "/calculate", method = RequestMethod.POST)
+    @RequestMapping(value = "/calculate",  method = RequestMethod.POST)
     @ResponseBody
     public double calculate (@RequestBody String payload){
         Gson gson = new Gson();
@@ -37,6 +55,14 @@ public class Controller {
 
         // Used JSON {"num1": 5,"num2": 12.25,"op": "prod"}
     }
+
+    @RequestMapping(value = {"/employees", "/list"}, method = RequestMethod.GET)
+    public String listEmployees(Model model){
+        model.addAttribute("list", employeeService.listAll());
+        return "/list";
+    }
+
+
 
 
 
