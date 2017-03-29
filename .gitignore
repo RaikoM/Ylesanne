@@ -1,7 +1,6 @@
 .gradle
 .idea
 build
-src/main/java/datamodel/
 src/test/
 gradlew
 gradlew.bat
